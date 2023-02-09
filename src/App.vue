@@ -1,11 +1,13 @@
 <script>
-import Component1 from './components/Component1.vue';
+import AppHeader from './components/AppHeader.vue';
+import AppMain from './components/AppHeader.vue';
 import { store } from "./store.js";
 
 export default {
     name: "App",
     components: {
-      Component1,
+      AppHeader,
+      AppMain,
     },
     data() {
           return {
@@ -20,9 +22,10 @@ export default {
 
 
 <template>
-  <!-- placeholder -->
-  <Component1/> 
-  <!-- placeholder -->
+
+  <AppHeader/> 
+  <AppMain/>
+
 </template>
 
 

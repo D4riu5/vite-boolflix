@@ -1,13 +1,14 @@
 <script>
+import { store } from "./store.js";
 
 export default {
-    name: 'Placeholder',
+    name: 'AppMain',
     components: {
 
     },
     data() {
         return {
-            
+            store,
         }
     },
     methods:{
