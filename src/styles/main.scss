@@ -1,5 +1,27 @@
 @import "partials/reset";
+@import "partials/variables.scss";
 
 body{
     background-color: black;
+}
+
+// flag icons (missing)
+.fi-en {
+    background-image: url($flag-icons-path + 'us.svg')
+}
+
+.fi-ko {
+    background-image: url($flag-icons-path + 'kr.svg')
+}
+
+.fi-ja {
+    background-image: url($flag-icons-path + 'jp.svg')
+}
+
+.fi-uk{
+    background-image: url($flag-icons-path + 'gb.svg')
+}
+
+.fi-zh{
+    background-image: url($flag-icons-path + 'cn.svg')
 }

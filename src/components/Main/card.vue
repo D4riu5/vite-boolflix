@@ -1,9 +1,12 @@
 <script>
 import { store } from "../../store.js";
+import cardInfo from './cardInfo.vue'
 
 export default {
   name: "card",
-  components: {},
+  components: {
+    cardInfo,
+  },
   data() {
     return {
       store,
@@ -14,25 +17,42 @@ export default {
 </script>
 
 <template>
-  <div  class="text-center text-white d-flex justify-content-center flex-wrap">
-    <div v-for="(card, index) in this.store.movies" class="w-25 m-4 p-2 bg-primary">
-      <div>
-        {{ 'Card ' + (index += 1)  }}
-      </div>
-      <div>
-        {{ 'Title: ' + card.title }}
-      </div>
-      <div>
-        {{ 'Original Title: ' + card.original_title }}
-      </div>
-      <div>
-        {{ 'Lang: ' + card.original_language }}
-      </div>
-      <div>
-        {{ 'Rating : ' + card.vote_average }}
-      </div>
+
+  <!-- MOVIES -->
+  <div v-if="this.store.movies.length > 0">
+
+    <h3 class="m-2 text-white">
+        Movies
+    </h3>
+    <div  class="text-center text-white d-flex justify-content-center flex-wrap">
+
+      <card-info 
+      v-for="(card, index) in this.store.movies"
+      :card="card"
+      :type="'movie'"
+      :index="index + 1"/>
+
     </div>
   </div>
+
+
+<!-- TV SHOWS -->
+  <div v-if="this.store.movies.length > 0">
+    
+    <h3 class="m-2 text-white">
+        Tv-Shows
+    </h3>
+    <div  class="text-center text-white d-flex justify-content-center flex-wrap">
+
+      <card-info 
+      v-for="(card, index) in this.store.tvShows"
+      :card="card"
+      :type="'tvShow'"
+      :index="index + 1"/>
+
+    </div>
+  </div>
+  
 </template>
 
 <style lang="scss" scoped></style>

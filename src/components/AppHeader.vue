@@ -31,12 +31,15 @@ export default {
     findMovie() {
       this.getApiResult("movie", "movies");
     },
+    findTvShow() {
+      this.getApiResult("tv", "tvShows");
+    },
   },
 };
 </script>
 
 <template>
-  <form @submit.prevent="findMovie()" class="text-center my-4">
+  <form @submit.prevent="findMovie(), findTvShow()" class="text-center my-4">
     <input v-model="store.userInput" type="text" class="mx-4" />
     <button>Search</button>
   </form>
