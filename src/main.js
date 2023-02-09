@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-// bootstrap components
+// bootstrap css
 import 'bootstrap/dist/css/bootstrap.min.css'
 // bootstrap components
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
