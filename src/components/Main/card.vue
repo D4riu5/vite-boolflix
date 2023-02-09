@@ -21,7 +21,7 @@ export default {
   <!-- MOVIES -->
   <div v-if="this.store.movies.length > 0">
 
-    <h3 class="m-2 text-white">
+    <h3 class="m-4 text-white">
         Movies
     </h3>
     <div  class="text-center text-white d-flex justify-content-center flex-wrap">
@@ -39,7 +39,7 @@ export default {
 <!-- TV SHOWS -->
   <div v-if="this.store.movies.length > 0">
     
-    <h3 class="m-2 text-white">
+    <h3 class="m-4 text-white">
         Tv-Shows
     </h3>
     <div  class="text-center text-white d-flex justify-content-center flex-wrap">
@@ -52,7 +52,7 @@ export default {
 
     </div>
   </div>
-  
+
 </template>
 
 <style lang="scss" scoped></style>
