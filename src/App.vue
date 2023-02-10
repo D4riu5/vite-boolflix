@@ -22,10 +22,11 @@ export default {
 
 
 <template>
+  <div class="">
+    <AppHeader/> 
+    <AppMain/>
+  </div>
 
-  <AppHeader/> 
-  <AppMain/>
-  
 </template>
 
 

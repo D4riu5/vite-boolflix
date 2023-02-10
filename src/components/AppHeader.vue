@@ -34,18 +34,37 @@ export default {
     findTvShow() {
       this.getApiResult("tv", "tvShows");
     },
+
+    reset() {
+      this.store.userInput = '';
+      this.findMovie();
+      this.findTvShow();
+    }
   },
 };
 </script>
 
 <template>
-  <form @submit.prevent="findMovie(), findTvShow()" class="text-center my-4">
-    <input v-model="store.userInput" type="text" class="mx-4" />
-    <button>Search</button>
-  </form>
+  <div class="d-flex flex-column justify-content-between align-items-center mx-5 p-4">
+    <img @click="reset()" src="../assets/logo.png" alt="">
+
+    <div class="w-50">
+      <form @submit.prevent="findMovie(), findTvShow()" class="text-center my-4 d-flex">
+        <input placeholder="Search for movies/tv shows" v-model="store.userInput" type="text" class="mx-4 form-control" />
+        <button class="btn btn-light">Search</button>
+      </form>
+    </div>
+  </div>
 </template>
 
 
 
 <style lang="scss" scoped>
+ @use "../styles/partials/variables.scss" as *;
+
+  img{
+    width: 200px;
+    aspect-ratio: 3/1;
+    cursor: pointer;
+  }
 </style>

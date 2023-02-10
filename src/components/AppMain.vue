@@ -12,12 +12,17 @@ export default {
       store,
     };
   },
-  methods: {},
+  methods: {
+    
+  },
 };
 </script>
 
 <template>
-  <card/>
+  <div class="container">
+    <card/>
+  </div>
+
 </template>
 
 <style lang="scss" scoped></style>
