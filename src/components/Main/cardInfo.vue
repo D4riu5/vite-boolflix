@@ -15,7 +15,16 @@ export default {
     index: Number,
   },
   methods: {
-    
+    printGenres(id, type) {
+      if (type == 'movie') {
+        let genre = this.store.moviesGenres.find(element => element.id === id);
+        return genre ? genre.name : 'Unknown';
+      } else {
+        let genre = this.store.tvShowsGenres.find(element => element.id === id);
+        return genre ? genre.name : 'Unknown';
+      }
+
+    },
   },
   computed: {
     titleVariant() {
@@ -28,11 +37,12 @@ export default {
     formattedRating() {
       let halfedRating = Math.ceil(this.card.vote_average / 2);
       return halfedRating > 5 ? 5 : halfedRating;
-           
-    }
+    },
+
+    
   
   }
-};
+}
 </script>
 
 <template>
@@ -71,8 +81,22 @@ export default {
           {{ card.vote_count }}
         </div>
 
+        <!-- card GENRES -->
+        <div class="d-flex flex-column justify-content-between py-2">
+          <span v-for="index in card.genre_ids" class="text-danger">
+            {{`#` + printGenres(index, type) }}
+          </span>
+        </div>
+
+        <!-- card ACTORS -->
+        <div class="d-flex flex-column">
+          <span v-for="element in card.actors" class="text-warning">
+            {{ element.original_name }}
+          </span>
+        </div>
+
         <!-- overview -->
-        <div class="py-4 text-start">
+        <div class="py-2 text-start">
           {{ card.overview }}
         </div>
 

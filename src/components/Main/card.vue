@@ -108,10 +108,8 @@ export default {
 
     <div class="p-2 text-center text-white d-flex justify-content-center">
       <card-info 
-      v-for="(card, index) in this.store.tvShows.slice(store.tvShowsIndex, store.tvShowsIndex + 4)"
-      :card="card"
-      :type="'tvShow'"
-      />
+      v-for="(card, index) in this.store.tvShows.slice(store.tvShowsIndex, store.tvShowsIndex + 4)
+      " :card="card" :type="'tvShow'"/>
     </div>
 
     <!-- buttons -->

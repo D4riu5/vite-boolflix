@@ -32,6 +32,11 @@ export default {
       this.getApiResult("movie", "movies");
       this.store.moviesIndex = 0;
       this.store.tvShowsIndex = 0;
+      setTimeout(() => {
+        this.fetchMovieActors();
+        this.fetchTvActors();
+      }, 500);
+      
     },
     findTvShow() {
       this.getApiResult("tv", "tvShows");
@@ -43,8 +48,48 @@ export default {
       this.store.userInput = '';
       this.findMovie();
       this.findTvShow();
-    }
+    },
+
+    // ADD ACTORS (cant DRY the code further.. i've tried...)
+    // ADD ACTORS TO store.movies
+    getMovieActors(id) {
+      axios
+        .get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=1f883ae07d184cc1f4eadd8b60bf26db&language=en-US`)
+        .then((resp) => {
+          const movie = this.store.movies.find(movie => movie.id === id);
+          movie.actors = resp.data.cast.slice(0, 5)
+        })
+    },
+
+    fetchMovieActors() {
+      this.store.movies.map(movie => {
+        this.getMovieActors(movie.id);
+      });
+    },
+
+    // ADD ACTORS TO store.tvShows
+    getTvActors(id) {
+      axios
+        .get(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=1f883ae07d184cc1f4eadd8b60bf26db&language=en-US`)
+        .then((resp) => {
+          const tvShow = this.store.tvShows.find(tvShow => tvShow.id === id);
+          tvShow.actors = resp.data.cast.slice(0, 5)
+        })
+    },
+
+    fetchTvActors() {
+      this.store.tvShows.map(tvShow => {
+        this.getTvActors(tvShow.id);
+      });
+    },
+    
+    
+
+
   },
+  created() {
+    
+  }
 };
 </script>
 

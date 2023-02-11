@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import { store } from "./store.js";
@@ -15,7 +16,28 @@ export default {
           }
       },
     methods:{
-        
+      getGenresApi(endPoint, storeTarget) {
+        axios
+          .get(`https://api.themoviedb.org/3/genre/${endPoint}/list`, {
+            params: {
+              api_key: "1f883ae07d184cc1f4eadd8b60bf26db",
+            },
+          })
+          .then(resp => {
+            this.store[storeTarget] = resp.data.genres
+        });
+      },
+      getMoviegenres() {
+        this.getGenresApi(`movie`, `moviesGenres`)
+      },
+      getTvShowsGenres() {
+        this.getGenresApi(`tv`, `tvShowsGenres`)
+      },
+    },
+    
+    created() {
+      this.getMoviegenres();
+      this.getTvShowsGenres()
     },
 };
 </script>
