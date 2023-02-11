@@ -90,7 +90,7 @@ export default {
 
         <!-- card ACTORS -->
         <div class="d-flex flex-column">
-          <span v-for="element in card.actors" class="text-warning">
+          <span v-for="element in card.actors" class="text-info">
             {{ element.original_name }}
           </span>
         </div>

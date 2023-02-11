@@ -29,19 +29,30 @@ export default {
     },
 
     findMovie() {
-      this.getApiResult("movie", "movies");
-      this.store.moviesIndex = 0;
-      this.store.tvShowsIndex = 0;
-      setTimeout(() => {
-        this.fetchMovieActors();
-        this.fetchTvActors();
-      }, 500);
+      if (this.store.selectedOption == 'both' || this.store.selectedOption == 'movies') {
+        this.store.movies = [];
+        this.store.tvShows = [];
+        this.getApiResult("movie", "movies");
+        this.store.moviesIndex = 0;
+        this.store.tvShowsIndex = 0;
+        setTimeout(() => {
+          this.fetchMovieActors();
+          this.fetchTvActors();
+        }, 500);
       
+      }
     },
     findTvShow() {
-      this.getApiResult("tv", "tvShows");
-      this.store.moviesIndex = 0;
-      this.store.tvShowsIndex = 0;
+      if (this.store.selectedOption == 'both' || this.store.selectedOption == 'tvShows') {
+        this.store.movies = [];
+        this.store.tvShows = [];
+        this.getApiResult("tv", "tvShows");
+        this.store.moviesIndex = 0;
+        this.store.tvShowsIndex = 0;
+        setTimeout(() => {
+            this.fetchTvActors();
+        }, 500);
+      }
     },
 
     reset() {
@@ -98,12 +109,18 @@ export default {
     <img @click="reset()" src="../assets/logo.png" alt="">
 
     <div class="w-50">
-      <form @submit.prevent="findMovie(), findTvShow()" class="text-center my-4 d-flex">
-        <input placeholder="Search for movies/tv shows" v-model="store.userInput" type="text" class="mx-4 form-control" />
+      <form @submit.prevent="findMovie(), findTvShow()" class="text-center my-4 d-flex ">
+        <select v-model="store.selectedOption">
+          <option selected value="both">Both</option>
+          <option value="movies">Movies</option>
+          <option value="tvShows">TV Shows</option>
+        </select>
+        <input :placeholder="store.selectedOption == 'both' ? 'Search for both Movies and TV shows' : store.selectedOption === 'movies' ? 'Search for Movies' : 'Search for TV shows' " v-model="store.userInput" type="text" class="mx-4 form-control" />
         <button class="btn btn-light">Search</button>
       </form>
     </div>
   </div>
+  
 </template>
 
 

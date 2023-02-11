@@ -81,9 +81,7 @@ export default {
     <div class="p-2 text-center text-white d-flex justify-content-center">
       <card-info 
       v-for="(card, index) in this.store.movies.slice(store.moviesIndex, store.moviesIndex + 4)"
-      :card="card"
-      :type="'movie'"
-      :index="index + 1"/>
+      :card="card" :type="'movie'"/>
     </div>
 
     <!-- buttons -->
