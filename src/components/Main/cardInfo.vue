@@ -36,13 +36,13 @@ export default {
 </script>
 
 <template>
-  <div class="my_card-container w-25 m-2 p-2">
+  <div class="my_card-container w-25 mx-2 p-2">
 
     <!-- card image -->
     <div class="my_img-container position-relative">
       <img :src="card.poster_path ? 'http://image.tmdb.org/t/p/w500' + card.poster_path : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png'" :alt="titleVariant">
       
-      <div class="my_info-container position-absolute top-0 start-50 translate-middle-x overflow-auto p-2 d-flex flex-column">
+      <div class="my_info-container position-absolute top-0 start-50 translate-middle-x overflow-auto p-3 d-flex flex-column">
         <!-- card title -->
         <h5>{{ titleVariant }}</h5>
         <!-- card og title -->
@@ -72,7 +72,7 @@ export default {
         </div>
 
         <!-- overview -->
-        <div class="py-4">
+        <div class="py-4 text-start">
           {{ card.overview }}
         </div>
 
@@ -87,27 +87,30 @@ export default {
 
 
   .my_card-container{
-    
+    max-width: 304px;
     &:hover .my_info-container{
       background-color: $black-transparent;
       opacity: 1;
+      
     }
 
     .my_img-container{
-      max-width: 360px;
-      min-width: 250px;
-      aspect-ratio: 1/1.3;
+      max-width: 304px;
+      min-width: 220px;
     }
     .my_info-container{
-      width: 101%;
-      height: 101%;
+      width: 100.5%;
+      height: 100.1%;
       opacity: 0;
+      transition: 0.3s;
+      scrollbar-color: $gray $black;
     };
 
     img{
       width: 100%;
-      aspect-ratio: 1/1.3;
+      aspect-ratio: 1/1.5;
       object-fit: cover;
+      // object-position: top;
     };
   };
 

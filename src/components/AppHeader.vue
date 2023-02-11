@@ -30,9 +30,13 @@ export default {
 
     findMovie() {
       this.getApiResult("movie", "movies");
+      this.store.moviesIndex = 0;
+      this.store.tvShowsIndex = 0;
     },
     findTvShow() {
       this.getApiResult("tv", "tvShows");
+      this.store.moviesIndex = 0;
+      this.store.tvShowsIndex = 0;
     },
 
     reset() {
