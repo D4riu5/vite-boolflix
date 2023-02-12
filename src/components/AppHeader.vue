@@ -35,11 +35,11 @@ export default {
         this.getApiResult("movie", "movies");
         this.store.moviesIndex = 0;
         this.store.tvShowsIndex = 0;
+        
         setTimeout(() => {
           this.fetchMovieActors();
-          this.fetchTvActors();
         }, 1);
-      
+        
       }
     },
     findTvShow() {
@@ -50,7 +50,7 @@ export default {
         this.store.moviesIndex = 0;
         this.store.tvShowsIndex = 0;
         setTimeout(() => {
-            this.fetchTvActors();
+          this.fetchTvActors();
         }, 1);
       }
     },
@@ -66,7 +66,8 @@ export default {
         genre.selected = true;
       });
       store.advanced = false;
-
+      store.revealMovies = false;
+      store.revealTvshows = false;
     },
 
     // ADD ACTORS (dont know how to simplify the code more than this)
@@ -107,6 +108,7 @@ export default {
           if (!this.store.advanced) return true;
           return movie.genre_ids.some(id => this.store.moviesGenres.find(genre => genre.id === id).selected);
         });
+      store.revealMovies = true;
     },
     
     updateTvShows() {
@@ -114,6 +116,7 @@ export default {
           if (!this.store.advanced) return true;
           return show.genre_ids.some(id => this.store.tvShowsGenres.find(genre => genre.id === id).selected);
         });
+      store.revealTvshows = true;
     },
 
   },
@@ -127,7 +130,7 @@ export default {
   <div class="d-flex flex-column justify-content-between align-items-center mx-5 p-4">
     <img @click="reset()" src="../assets/logo.png" alt="">
 
-    <form @submit.prevent="findMovie(), findTvShow()" class="text-center my-4 d-flex justify-content-center">
+    <form @submit.prevent="findMovie(), findTvShow(), updateMovies(), updateTvShows()" class="text-center my-4 d-flex justify-content-center">
       <select @change="findMovie(), findTvShow()" v-model="store.selectedOption">
         <option selected value="both">Both</option>
         <option value="movies">Movies</option>
@@ -135,7 +138,7 @@ export default {
       </select>
       <input required :placeholder="store.selectedOption == 'both' ? 'Search for both Movies and TV shows' : store.selectedOption === 'movies' ? 'Search for Movies' : 'Search for TV shows' " v-model="store.userInput" type="text" class="mx-4 form-control" id="searchBar"/>
       <button class="btn btn-light me-2">Search</button>
-      <button @click.prevent="store.advanced = !store.advanced; updateMovies(); updateTvShows()" class="btn btn-light d-flex align-items-center">
+      <button v-if="store.revealMovies || store.revealTvshows" @click.prevent="store.advanced = !store.advanced; updateMovies(); updateTvShows()" class="btn btn-light d-flex align-items-center">
         <span class="pe-2">Advanced</span>
         <i :class="!store.advanced ? `fa-caret-down` : 'fa-caret-up'" class="fa-solid"></i>
       </button>

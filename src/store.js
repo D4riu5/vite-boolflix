@@ -10,5 +10,7 @@ export const store = reactive({
     tvShowsGenres: [],
     selectedOption: 'both',
     advanced: false,
+    revealMovies: false,
+    revealTvshows: false,
 });
 

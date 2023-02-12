@@ -80,7 +80,7 @@ export default {
     <template></template>
     <div class="p-2 text-center text-white d-flex justify-content-center">
       <template v-for="(card, index) in this.store.movies.slice(store.moviesIndex, store.moviesIndex + 4)">
-        <card-info :card="card" :type="'movie'"/>  
+        <card-info v-if="store.revealMovies" :card="card" :type="'movie'"/>  
       </template>
     </div>
 
@@ -106,7 +106,7 @@ export default {
     
     <div class="p-2 text-center text-white d-flex justify-content-center">
       <template v-for="(card, index) in this.store.tvShows.slice(store.tvShowsIndex, store.tvShowsIndex + 4)">
-        <card-info :card="card" :type="'tvShow'"/>
+        <card-info v-if="store.revealTvshows" :card="card" :type="'tvShow'"/>
       </template>
     </div>
 
