@@ -9,5 +9,6 @@ export const store = reactive({
     moviesGenres: [],
     tvShowsGenres: [],
     selectedOption: 'both',
+    advanced: false,
 });
 

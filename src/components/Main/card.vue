@@ -32,7 +32,7 @@ export default {
       } else {
         this.store[`${type}Index`] -= 4;
 
-        // DONT KNOW HOW TO SIMPLIFY THIS ANY FURTHER (i tried for 2 hours )
+        // DONT KNOW HOW TO SIMPLIFY THIS ANY FURTHER
         if (this.store[`${type}Index`] < 0) {
           switch (this.store[type].length) {
             case 20:
@@ -77,11 +77,11 @@ export default {
     <h3 class="my-3 text-white">
         Movies
     </h3>
-
+    <template></template>
     <div class="p-2 text-center text-white d-flex justify-content-center">
-      <card-info 
-      v-for="(card, index) in this.store.movies.slice(store.moviesIndex, store.moviesIndex + 4)"
-      :card="card" :type="'movie'"/>
+      <template v-for="(card, index) in this.store.movies.slice(store.moviesIndex, store.moviesIndex + 4)">
+        <card-info :card="card" :type="'movie'"/>  
+      </template>
     </div>
 
     <!-- buttons -->
@@ -103,11 +103,11 @@ export default {
     <h3 class="my-3 text-white">
         Tv-Shows
     </h3>
-
+    
     <div class="p-2 text-center text-white d-flex justify-content-center">
-      <card-info 
-      v-for="(card, index) in this.store.tvShows.slice(store.tvShowsIndex, store.tvShowsIndex + 4)
-      " :card="card" :type="'tvShow'"/>
+      <template v-for="(card, index) in this.store.tvShows.slice(store.tvShowsIndex, store.tvShowsIndex + 4)">
+        <card-info :card="card" :type="'tvShow'"/>
+      </template>
     </div>
 
     <!-- buttons -->

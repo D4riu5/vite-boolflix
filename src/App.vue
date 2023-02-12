@@ -28,16 +28,29 @@ export default {
         });
       },
       getMoviegenres() {
-        this.getGenresApi(`movie`, `moviesGenres`)
+        this.getGenresApi(`movie`, `moviesGenres`);
+        setTimeout(() => {
+          store.moviesGenres.forEach(genre => {
+            genre.selected = true;
+          });
+        }, 1);
+        
       },
       getTvShowsGenres() {
-        this.getGenresApi(`tv`, `tvShowsGenres`)
+        this.getGenresApi(`tv`, `tvShowsGenres`);
+        setTimeout(() => {
+          store.tvShowsGenres.forEach(element => {
+            element.selected = true;
+          }); 
+        }, 1);
+
       },
+      
     },
     
     created() {
       this.getMoviegenres();
-      this.getTvShowsGenres()
+      this.getTvShowsGenres();
     },
 };
 </script>
